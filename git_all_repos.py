@@ -14,7 +14,7 @@ def get_total_repos(group, name):
             for repo in rdata:
                 repo_urls.append(repo['clone_url'])
             if (len(rdata) >= 100):
-                page = page + 1
+                page += 1
             else:
                 print('Found {0} repos.'.format(len(repo_urls)))
                 break
@@ -25,10 +25,12 @@ def get_total_repos(group, name):
 
 
 def clone_repos(all_repos):
+    count = 1
     print('Cloning...')
     for repo in all_repos:
         os.system('Git clone ' + repo)
-
+        print('Completed repo #{0} of {1}'.format(count, len(all_repos)))
+        count += 1
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:
